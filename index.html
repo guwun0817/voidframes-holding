@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Voidframes — Premium animated website templates for the post-flat era. Volumetric Dark aesthetic." />
+  <meta name="theme-color" content="#0A0A0F" />
+  <meta property="og:title" content="Voidframes — Frames from the void" />
+  <meta property="og:description" content="Premium animated website templates for the post-flat era. Coming soon." />
+  <meta property="og:url" content="https://voidframes.com" />
+  <meta property="og:type" content="website" />
+  <title>Voidframes — Frames from the void</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --void-black: #0A0A0F; --void-deep: #050507; --void-fog: #14141C; --void-mist: #1C1C26;
+      --ink-primary: #F5F5F0; --ink-secondary: #8A8A95; --ink-tertiary: #4A4A55; --ink-quaternary: #2A2A33;
+      --accent-glow: #C9B891; --accent-cool: #6B9BD1;
+      --hairline: #23232A; --hairline-strong: #34343A;
+      --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1); --ease-power: cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--void-black); color: var(--ink-primary);
+      font-family: 'Geist', system-ui, -apple-system, sans-serif;
+      min-height: 100vh; min-height: 100dvh; overflow: hidden; position: relative;
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    }
+    .gradient-drift {
+      position: fixed; inset: -25%; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 60% 50% at 20% 30%, rgba(107, 155, 209, 0.07) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 60% at 80% 70%, rgba(201, 184, 145, 0.06) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 40% at 50% 50%, rgba(20, 20, 28, 0.4) 0%, transparent 70%);
+      animation: drift 60s var(--ease-smooth) infinite; filter: blur(40px);
+    }
+    @keyframes drift {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(-3%, 2%) scale(1.05); }
+      66% { transform: translate(2%, -3%) scale(0.98); }
+    }
+    .cursor-glow {
+      position: fixed; top: 0; left: 0; width: 500px; height: 500px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(201, 184, 145, 0.08) 0%, transparent 60%);
+      pointer-events: none; z-index: 2; transform: translate(-50%, -50%);
+      will-change: transform; transition: opacity 0.6s var(--ease-smooth);
+    }
+    .grain {
+      position: fixed; inset: 0; z-index: 4; pointer-events: none; opacity: 0.05; mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .vignette {
+      position: fixed; inset: 0; z-index: 3; pointer-events: none;
+      background: radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.5) 100%);
+    }
+    .container {
+      position: relative; z-index: 5; min-height: 100vh; min-height: 100dvh;
+      display: flex; flex-direction: column; padding: 32px; max-width: 1440px; margin: 0 auto;
+    }
+    .top-bar { display: flex; align-items: center; justify-content: space-between; opacity: 0; animation: fadeIn 1.2s var(--ease-smooth) 0.2s forwards; }
+    .brand { display: flex; align-items: center; gap: 12px; font-family: 'Geist Mono', monospace; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-secondary); }
+    .brand-dot { width: 8px; height: 8px; background: var(--ink-primary); border-radius: 50%; box-shadow: 0 0 20px rgba(245, 245, 240, 0.6); animation: pulse 3s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 0.6; transform: scale(1); } 50% { opacity: 1; transform: scale(1.15); } }
+    .status { font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-tertiary); display: flex; align-items: center; gap: 8px; }
+    .status-dot { width: 6px; height: 6px; background: var(--accent-glow); border-radius: 50%; box-shadow: 0 0 8px var(--accent-glow); }
+    .hero { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; max-width: 900px; padding: 64px 0; }
+    .eyebrow { font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-secondary); margin-bottom: 32px; opacity: 0; animation: revealUp 1s var(--ease-smooth) 0.4s forwards; }
+    .eyebrow::before { content: ''; display: inline-block; width: 32px; height: 1px; background: var(--ink-tertiary); vertical-align: middle; margin-right: 16px; transform: translateY(-2px); }
+    h1 { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; font-size: clamp(56px, 11vw, 144px); line-height: 0.95; letter-spacing: -0.04em; color: var(--ink-primary); margin-bottom: 40px; }
+    h1 .word { display: inline-block; opacity: 0; transform: translateY(40px); animation: revealUp 1.4s var(--ease-smooth) forwards; }
+    h1 .word:nth-child(1) { animation-delay: 0.6s; }
+    h1 .word:nth-child(2) { animation-delay: 0.74s; }
+    h1 .word:nth-child(3) { animation-delay: 0.88s; }
+    h1 .word:nth-child(4) { animation-delay: 1.02s; }
+    h1 .accent { color: var(--accent-glow); }
+    .tagline { font-family: 'Geist', sans-serif; font-size: clamp(16px, 1.4vw, 20px); font-weight: 400; line-height: 1.5; color: var(--ink-secondary); max-width: 540px; margin-bottom: 56px; opacity: 0; animation: revealUp 1s var(--ease-smooth) 1.4s forwards; }
+    .signup { display: flex; gap: 8px; flex-wrap: wrap; max-width: 480px; width: 100%; opacity: 0; animation: revealUp 1s var(--ease-smooth) 1.7s forwards; }
+    .email-input { flex: 1; min-width: 220px; background: var(--void-fog); border: 1px solid var(--hairline); color: var(--ink-primary); font-family: 'Geist', sans-serif; font-size: 14px; padding: 14px 18px; border-radius: 9999px; outline: none; transition: all 0.4s var(--ease-smooth); }
+    .email-input::placeholder { color: var(--ink-tertiary); }
+    .email-input:focus { border-color: var(--hairline-strong); background: var(--void-mist); }
+    .notify-btn { background: var(--ink-primary); color: var(--void-black); border: none; font-family: 'Geist', sans-serif; font-size: 14px; font-weight: 500; padding: 14px 24px; border-radius: 9999px; cursor: pointer; transition: all 0.4s var(--ease-smooth); white-space: nowrap; letter-spacing: 0.02em; }
+    .notify-btn:hover { transform: scale(1.02); box-shadow: 0 0 32px rgba(201, 184, 145, 0.3); }
+    .notify-btn:active { transform: scale(0.98); }
+    .signup-status { width: 100%; font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 16px; min-height: 14px; opacity: 0; transition: opacity 0.4s var(--ease-smooth); }
+    .signup-status.show { opacity: 1; }
+    .signup-status.success { color: var(--accent-glow); }
+    .signup-status.error { color: #D4756B; }
+    .footer { display: flex; justify-content: space-between; align-items: center; font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-tertiary); opacity: 0; animation: fadeIn 1.2s var(--ease-smooth) 2s forwards; flex-wrap: wrap; gap: 16px; }
+    .footer a { color: var(--ink-tertiary); text-decoration: none; transition: color 0.4s var(--ease-smooth); }
+    .footer a:hover { color: var(--ink-primary); }
+    @keyframes revealUp { to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { to { opacity: 1; } }
+    @media (max-width: 640px) {
+      .container { padding: 20px; }
+      .hero { padding: 40px 0; }
+      .eyebrow { margin-bottom: 24px; }
+      h1 { margin-bottom: 28px; }
+      .tagline { margin-bottom: 40px; }
+      .cursor-glow { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="gradient-drift" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="container">
+    <header class="top-bar">
+      <div class="brand"><span class="brand-dot"></span><span>Voidframes</span></div>
+      <div class="status"><span class="status-dot"></span><span>Launching Soon</span></div>
+    </header>
+    <main class="hero">
+      <div class="eyebrow">Volumetric Dark Templates</div>
+      <h1>
+        <span class="word">Frames</span>
+        <span class="word">from</span>
+        <span class="word">the</span>
+        <span class="word accent">void.</span>
+      </h1>
+      <p class="tagline">Premium animated website templates for the post-flat era. Cinematic depth, editorial typography, disciplined motion. Built for studios who refuse to look like everyone else.</p>
+      <form class="signup" id="signupForm" novalidate>
+        <input type="email" class="email-input" id="emailInput" placeholder="your@email.com" required autocomplete="email" aria-label="Email address" />
+        <button type="submit" class="notify-btn">Notify me</button>
+        <div class="signup-status" id="signupStatus" role="status" aria-live="polite"></div>
+      </form>
+    </main>
+    <footer class="footer">
+      <div>&copy; 2026 Weaving Light Technologies LLC</div>
+      <div><a href="mailto:hello@voidframes.com">hello@voidframes.com</a></div>
+    </footer>
+  </div>
+  <script>
+    const glow = document.getElementById('cursorGlow');
+    let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+    let glowX = mouseX, glowY = mouseY;
+    document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+    function animateGlow() {
+      glowX += (mouseX - glowX) * 0.12;
+      glowY += (mouseY - glowY) * 0.12;
+      glow.style.transform = `translate(${glowX}px, ${glowY}px) translate(-50%, -50%)`;
+      requestAnimationFrame(animateGlow);
+    }
+    animateGlow();
+    document.addEventListener('mouseleave', () => glow.style.opacity = '0');
+    document.addEventListener('mouseenter', () => glow.style.opacity = '1');
+    const form = document.getElementById('signupForm');
+    const emailInput = document.getElementById('emailInput');
+    const status = document.getElementById('signupStatus');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = emailInput.value.trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showStatus('Please enter a valid email address.', 'error');
+        return;
+      }
+      showStatus('Sending…', '');
+      const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+      try {
+        const res = await fetch(FORMSPREE_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({ email, source: 'voidframes-holding' })
+        });
+        if (res.ok) { showStatus("You're on the list.", 'success'); emailInput.value = ''; }
+        else { showStatus('Something went wrong. Try again.', 'error'); }
+      } catch (err) { showStatus('Network error. Try again later.', 'error'); }
+    });
+    function showStatus(message, type) {
+      status.textContent = message;
+      status.className = `signup-status show ${type}`;
+    }
+  </script>
+</body>
+</html>
